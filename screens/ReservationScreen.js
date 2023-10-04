@@ -5,8 +5,7 @@ import {
     ScrollView,
     StyleSheet,
     Switch,
-    Button,
-    TouchableOpacity,
+    Button,    
     Alert
 } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
@@ -29,7 +28,7 @@ const ReservationScreen = () => {
     const handleReservation = () => {
         Alert.alert(
            'Begin Search? ',
-           'Number of Campers: ' + campers + "\n" + 'Hike in? ' +  hikeIn + "\n" + 'Date: ' + date ,               
+           'Number of Campers: ' + campers + "\n" + 'Hike in? ' +  hikeIn + "\n" + 'Date: ' + date.toLocaleDateString('en-us', { year:"numeric", month:"short"}),               
        
             [
                 {
