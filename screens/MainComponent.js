@@ -239,8 +239,9 @@ const Main = () => {
         dispatch(fetchComments());
     }, [dispatch]);
 
-    useEffect(() => {
-        NetInfo.fetch().then((connectionInfo) => {
+    //Task 3 part 1
+    const showNetInfo = async () => {
+        const connectionInfo = await NetInfo.fetch()
             Platform.OS === 'ios'
                 ? Alert.alert(
                       'Initial Network Connectivity Type:',
@@ -250,9 +251,11 @@ const Main = () => {
                       'Initial Network Connectivity Type: ' +
                           connectionInfo.type,
                       ToastAndroid.LONG
-                  );
-        });
+                  );    
+    };
 
+    useEffect(() => {
+        showNetInfo();  //Task3 pt2
         const unsubscribeNetInfo = NetInfo.addEventListener(
             (connectionInfo) => {
                 handleConnectivityChange(connectionInfo);
